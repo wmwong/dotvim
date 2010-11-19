@@ -1,4 +1,4 @@
-"Behave in a more useful way
+" Behave in a more useful way
 set nocompatible
 
 " Package bundling using pathogen
@@ -30,13 +30,14 @@ set smartcase       " case insensitive when lower case, else case sensitive
 set number
 
 " Ignore files
-set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.gif,*.xpm
+set wildignore+=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.gif,*.xpm
 
 " Miscellaneous
 set showcmd         " show (partial) command in status line
 set showmatch       " show matching brackets
 set autoread        " automatically read file changes outside of vim
 set wildmenu        " show menu when auto completing
+set ruler           " add a ruler to the bottom
 
 " Set warning of over column 80
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
