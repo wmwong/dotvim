@@ -1,15 +1,13 @@
 "Behave in a more useful way
 set nocompatible
 
-" Needed for some Linux distros
-filetype off
-
 " Package bundling using pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 " Specify a color scheme
 colorscheme molokai
+set background=dark
 
 " Turn on highlighting
 syntax on
@@ -31,6 +29,15 @@ set smartcase       " case insensitive when lower case, else case sensitive
 " Line numbers
 set number
 
+" Ignore files
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.gif,*.xpm
+
+" Miscellaneous
+set showcmd         " show (partial) command in status line
+set showmatch       " show matching brackets
+set autoread        " automatically read file changes outside of vim
+set wildmenu        " show menu when auto completing
+
 " Set warning of over column 80
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
@@ -41,3 +48,20 @@ set noswapfile
 
 " Toggle paste mode
 set pastetoggle=<F2>
+
+" Set the mapleader
+let mapleader = ","
+
+" Ctrl-N to disable search match highlight
+" Note: C-N was the same as k (move to next line ) 
+nmap <silent> <C-N> :silent noh<CR>
+
+" Ctrl-P to Display the file browser tree
+" Note: C-P was the same as j (move to previous line)
+nmap <C-P> :NERDTreeToggle<CR>
+" ,p to show current file in the tree
+nmap <leader>p :NERDTreeFind<CR>
+
+" ,/ to invert comment on the current line/selection
+nmap <leader>/ :call NERDComment(0, "invert")<cr>
+vmap <leader>/ :call NERDComment(0, "invert")<cr>
