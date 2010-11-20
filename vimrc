@@ -33,11 +33,12 @@ set number
 set wildignore+=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.gif,*.xpm
 
 " Miscellaneous
+set ruler           " add a ruler to the bottom
 set showcmd         " show (partial) command in status line
 set showmatch       " show matching brackets
 set autoread        " automatically read file changes outside of vim
 set wildmenu        " show menu when auto completing
-set ruler           " add a ruler to the bottom
+set nostartofline   " don't jump to first character when paging
 
 " Set warning of over column 80
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -47,11 +48,32 @@ match OverLength /\%81v.\+/
 set nobackup
 set noswapfile
 
-" Toggle paste mode
-set pastetoggle=<F2>
+if has("autocmd")
+  " au is short for autocmd
+  
+  " Restore cursor position
+  au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+  " Filetypes (au = autocmd)
+  au FileType helpfile set nonumber      " no line numbers when viewing help
+  au FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
+  au FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
+endif
 
 " Set the mapleader
 let mapleader = ","
+
+"
+" MAPPINGS
+"
+
+" .vimrc
+map <leader>v :vsp ~/.vimrc<cr>    " edit my .vimrc file in a vertical split
+map <leader>e :e ~/.vimrc<cr>      " edit my .vimrc file
+map <leader>u :source ~/.vimrc<cr> " update the system settings from my .vimrc file
+
+" Toggle paste mode
+set pastetoggle=<F2>
 
 " Ctrl-N to disable search match highlight
 " Note: C-N was the same as k (move to next line ) 
