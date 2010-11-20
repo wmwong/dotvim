@@ -101,3 +101,8 @@ nmap <C-Down> ]e
 " Bubble multiple lines (uses unimpaired)
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
+
+" Sessions
+nmap <leader>s :SessionList<CR>
+nmap <leader>ss :SessionSave<CR>
+nmap <leader>sa :SessionSaveAs<CR>
