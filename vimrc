@@ -88,3 +88,16 @@ nmap <leader>p :NERDTreeFind<CR>
 " ,/ to invert comment on the current line/selection
 nmap <leader>/ :call NERDComment(0, "invert")<cr>
 vmap <leader>/ :call NERDComment(0, "invert")<cr>
+
+" Navigate splits without having to prepend with C-w
+map <C-h> <C-w>h
+map <C-k> <C-w>k
+map <C-j> <C-w>j
+map <C-l> <C-w>l
+
+" Bubble single lines (uses unimpaired)
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines (uses unimpaired)
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
