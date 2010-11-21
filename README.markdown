@@ -6,7 +6,7 @@ Clone the git repository and it's submodules.
     git submodule init
     git submodule update
 
-Softlink you .vimrc.
+Softlink your .vimrc.
     ln -s ~/.vim/vimrc ~/.vimrc
 
 Command-t requires vim to be compiled with ruby. It also needs to be made using the system's default ruby.
