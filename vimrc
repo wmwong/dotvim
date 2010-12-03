@@ -1,6 +1,9 @@
 " Behave in a more useful way
 set nocompatible
 
+" Needed for some Linux distros (like Ubuntu)
+filetype off
+
 " Package bundling using pathogen
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
