@@ -32,6 +32,9 @@ set number
 " Ignore files
 set wildignore+=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.gif,*.xpm
 
+" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
 " Miscellaneous
 set ruler           " add a ruler to the bottom
 set showcmd         " show (partial) command in status line
@@ -39,10 +42,6 @@ set showmatch       " show matching brackets
 set autoread        " automatically read file changes outside of vim
 set wildmenu        " show menu when auto completing
 set nostartofline   " don't jump to first character when paging
-
-" Set warning of over column 80
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
 
 " Disable backup files
 set nobackup
@@ -52,12 +51,23 @@ if has("autocmd")
   " au is short for autocmd
   
   " Restore cursor position
-  au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+  autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-  " Filetypes (au = autocmd)
-  au FileType helpfile set nonumber      " no line numbers when viewing help
-  au FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
-  au FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
+  " Change statusline color in insert mode
+  autocmd InsertEnter * highlight StatusLine ctermfg=2 ctermbg=2
+  autocmd InsertLeave * highlight StatusLine ctermfg=4 ctermbg=7
+
+  " Change statusline color of active window
+  autocmd VimEnter * highlight StatusLine term=reverse ctermfg=4 ctermbg=7 gui=bold,reverse
+
+  " Set warning of over column 80
+  autocmd BufWinEnter * let w:m1=matchadd('Error', '\%>80v.\+', -1)
+
+  " Filetypes
+  autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+  autocmd FileType helpfile setlocal nonumber      " no line numbers when viewing help
+  autocmd FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
+  autocmd FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
 endif
 
 " Set the mapleader
