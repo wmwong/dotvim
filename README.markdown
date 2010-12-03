@@ -18,3 +18,8 @@ Command-t requires vim to be compiled with ruby. It also needs to be made using 
 Certain colorschemes require 256 colors (like Molokai).
     sudo apt-get install ncurses-term -y
     echo 'export TERM=xterm-256color' >> ~/.bashrc
+
+# Reference
+
+Add a git submodule
+    git submodule add <git url> bundle/<plugin name>
