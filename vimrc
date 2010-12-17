@@ -32,6 +32,10 @@ set smartcase       " case insensitive when lower case, else case sensitive
 " Line numbers
 set number
 
+" Formatting
+" -r
+set formatprg=par\ -re
+
 " Ignore files
 set wildignore+=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.gif,*.xpm
 
@@ -45,6 +49,7 @@ set showmatch       " show matching brackets
 set autoread        " automatically read file changes outside of vim
 set wildmenu        " show menu when auto completing
 set nostartofline   " don't jump to first character when paging
+set cursorline      " highlight the current line
 
 " Disable backup files
 set nobackup
@@ -75,6 +80,11 @@ endif
 
 " Set the mapleader
 let mapleader = ","
+
+" DelimitMate
+let delimitMate_expand_space = 1
+let delimitMate_expand_cr = 1
+let delimitMate_balance_matchpairs = 1
 
 "
 " MAPPINGS
