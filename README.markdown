@@ -22,6 +22,7 @@ Certain colorschemes require 256 colors (like Molokai).
 # Reference
 
 ## Add a git submodule
+
     git submodule add <git url> bundle/<plugin name>
 
 ## Remove a git submodule
