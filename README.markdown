@@ -21,5 +21,14 @@ Certain colorschemes require 256 colors (like Molokai).
 
 # Reference
 
-Add a git submodule
+## Add a git submodule
     git submodule add <git url> bundle/<plugin name>
+
+## Remove a git submodule
+
+Git submodules must be removed manually.
+
+1. Remove from .gitmodules file
+2. Remove from .git/config file
+3. Remove from cache
+    git rm --cached <plugin path>
