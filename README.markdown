@@ -19,6 +19,11 @@ Certain colorschemes require 256 colors (like Molokai).
     sudo apt-get install ncurses-term -y
     echo 'export TERM=xterm-256color' >> ~/.bashrc
 
+jslint requires spidermonkey, rhino, or node.js.
+    sudo add-apt-repository ppa:jerome-etienne/neoip 
+    sudo apt-get update 
+    sudo apt-get install nodejs -y
+
 # Reference
 
 ## Add a git submodule
