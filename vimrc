@@ -50,6 +50,7 @@ set autoread        " automatically read file changes outside of vim
 set wildmenu        " show menu when auto completing
 set nostartofline   " don't jump to first character when paging
 set cursorline      " highlight the current line
+set laststatus=2    " always show the statusline
 
 " Disable backup files
 set nobackup
