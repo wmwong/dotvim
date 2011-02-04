@@ -37,4 +37,5 @@ Git submodules must be removed manually.
 1. Remove from .gitmodules file
 2. Remove from .git/config file
 3. Remove from cache
+
     git rm --cached <plugin path>
