@@ -72,6 +72,9 @@ if has("autocmd")
   " Set warning of over column 80
   autocmd BufWinEnter * let w:m1=matchadd('Error', '\%>80v.\+', -1)
 
+  " Set Filetypes
+  autocmd BufRead,BufNewFile *.less setfiletype css
+
   " Filetypes
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2
   autocmd FileType helpfile setlocal nonumber      " no line numbers when viewing help
