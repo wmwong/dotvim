@@ -89,6 +89,8 @@ let mapleader = ","
 let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 1
 let delimitMate_balance_matchpairs = 1
+" DelimitMate override of SnipMate's S-Tab
+imap <S-Tab> <Plug>delimitMateS-Tab
 
 "
 " MAPPINGS
