@@ -9,8 +9,8 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 " Specify a color scheme
-colorscheme molokai
 set background=dark
+colorscheme molokai
 
 " Turn on highlighting
 syntax on
