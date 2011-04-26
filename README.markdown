@@ -44,3 +44,4 @@ Git submodules must be removed manually.
 3. Remove from cache
 
     git rm --cached <plugin path>
+
