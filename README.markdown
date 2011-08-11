@@ -29,6 +29,11 @@ jslint requires spidermonkey, rhino, or node.js.
     sudo apt-get update 
     sudo apt-get install nodejs -y
 
+Ack requires ack!
+
+    sudo apt-get install ack-grep -y
+    sudo ln -s /usr/bin/ack-grep /usr/local/bin/ack
+
 # Reference
 
 ## Add a git submodule
@@ -44,3 +49,7 @@ Git submodules must be removed manually.
 3. Remove from cache
 
         git rm --cached <plugin path>
+
+## Pull git submodules
+
+    git submodule foreach git pull origin master
