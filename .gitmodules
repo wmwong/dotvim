@@ -58,3 +58,12 @@
 [submodule "bundle/jslint.vim"]
 	path = bundle/jslint.vim
 	url = https://github.com/hallettj/jslint.vim.git
+[submodule "bundle/mustache.vim"]
+	path = bundle/mustache.vim
+	url = git://github.com/juvenn/mustache.vim.git
+[submodule "bundle/ack.vim"]
+	path = bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "bundle/vim-liquid"]
+	path = bundle/vim-liquid
+	url = https://github.com/tpope/vim-liquid.git
