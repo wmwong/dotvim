@@ -73,7 +73,8 @@ if has("autocmd")
   autocmd BufWinEnter * let w:m1=matchadd('Error', '\%>80v.\+', -1)
 
   " Set Filetypes
-  autocmd BufRead,BufNewFile *.less setfiletype css
+  autocmd BufNewFile,BufRead *.less setfiletype css
+  autocmd BufNewFile,BufRead *.liquid setfiletype liquid
 
   " Filetypes
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2
@@ -98,8 +99,10 @@ imap <S-Tab> <Plug>delimitMateS-Tab
 
 " .vimrc
 map <leader>v :vsp ~/.vimrc<cr>    " edit my .vimrc file in a vertical split
-map <leader>e :e ~/.vimrc<cr>      " edit my .vimrc file
 map <leader>u :source ~/.vimrc<cr> " update the system settings from my .vimrc file
+
+" Refresh all files in the buffer
+map <leader>e :call ReloadAllBuffers()<cr>
 
 " Toggle paste mode
 set pastetoggle=<F2>
@@ -139,3 +142,13 @@ nmap <leader>sa :SessionSaveAs<CR>
 " Enable the matchit plugin for selecting blocks.
 " This is required by textobj-rubyblock.
 runtime macros/matchit.vim
+
+"
+" Functions
+"
+
+function! ReloadAllBuffers()   
+  set noconfirm                
+  :bufdo e!                    
+  set confirm                  
+endfunction  
