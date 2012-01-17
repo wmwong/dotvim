@@ -74,7 +74,8 @@ if has("autocmd")
 
   " If files have changed outside of Vim, update NERDTree and CommandT when
   " Vim gains focus.
-  " NOTE: FocusGained only works for GUI versions of Vim, like gvim.
+  " NOTE: FocusGained only works for GUI versions of Vim, like gvim. Should
+  " probably move this to gvimrc.
   autocmd FocusGained * call s:UpdateNERDTree()
   autocmd FocusGained * call s:UpdateCommandT()
 
