@@ -76,8 +76,9 @@ if has("autocmd")
   " Vim gains focus.
   " NOTE: FocusGained only works for GUI versions of Vim, like gvim. Should
   " probably move this to gvimrc.
+  " NOTE: CommandT is no longer used. Leaving for historical purposes.
   autocmd FocusGained * call s:UpdateNERDTree()
-  autocmd FocusGained * call s:UpdateCommandT()
+  "autocmd FocusGained * call s:UpdateCommandT()
 
   " Set Filetypes
   autocmd BufNewFile,BufRead *.less setfiletype css
@@ -147,6 +148,10 @@ nmap <leader>sa :SessionSaveAs<CR>
 " This is required by textobj-rubyblock.
 runtime macros/matchit.vim
 
+" CtrlP
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_working_path_mode = 2
+
 "
 " Functions
 "
@@ -171,9 +176,10 @@ function s:UpdateNERDTree(...)
   endif
 endfunction
 
+" NOTE: CommandT is no longer used. Leaving for historical purposes.
 " Update CommandT.
-function s:UpdateCommandT(...)
-  if exists(":CommandTFlush") == 2
-    CommandTFlush
-  endif
-endfunction
+"function s:UpdateCommandT(...)
+  "if exists(":CommandTFlush") == 2
+    "CommandTFlush
+  "endif
+"endfunction
