@@ -72,6 +72,14 @@ if has("autocmd")
   " Set warning of over column 80
   autocmd BufWinEnter * let w:m1=matchadd('Error', '\%>80v.\+', -1)
 
+  " If files have changed outside of Vim, update NERDTree and CommandT when
+  " Vim gains focus.
+  " NOTE: FocusGained only works for GUI versions of Vim, like gvim. Should
+  " probably move this to gvimrc.
+  " NOTE: CommandT is no longer used. Leaving for historical purposes.
+  autocmd FocusGained * call s:UpdateNERDTree()
+  "autocmd FocusGained * call s:UpdateCommandT()
+
   " Set Filetypes
   autocmd BufNewFile,BufRead *.less setfiletype css
   autocmd BufNewFile,BufRead *.liquid setfiletype liquid
@@ -100,9 +108,6 @@ imap <S-Tab> <Plug>delimitMateS-Tab
 " .vimrc
 map <leader>v :vsp ~/.vimrc<cr>    " edit my .vimrc file in a vertical split
 map <leader>u :source ~/.vimrc<cr> " update the system settings from my .vimrc file
-
-" Refresh all files in the buffer
-map <leader>e :call ReloadAllBuffers()<cr>
 
 " Toggle paste mode
 set pastetoggle=<F2>
@@ -146,12 +151,38 @@ runtime macros/matchit.vim
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
 
+" CtrlP
+let g:ctrlp_map = '<leader>t'
+let g:ctrlp_working_path_mode = 2
+
 "
 " Functions
 "
 
-function! ReloadAllBuffers()   
-  set noconfirm                
-  :bufdo e!                    
-  set confirm                  
-endfunction  
+" Update NERDTree.
+function s:UpdateNERDTree(...)
+  let stay = 0
+
+  if(exists("a:1"))
+    let stay = a:1
+  end
+
+  if exists("t:NERDTreeBufName")
+    let nr = bufwinnr(t:NERDTreeBufName)
+    if nr != -1
+      exe nr . "wincmd w"
+      exe substitute(mapcheck("R"), "<CR>", "", "")
+      if !stay
+        wincmd p
+      end
+    endif
+  endif
+endfunction
+
+" NOTE: CommandT is no longer used. Leaving for historical purposes.
+" Update CommandT.
+"function s:UpdateCommandT(...)
+  "if exists(":CommandTFlush") == 2
+    "CommandTFlush
+  "endif
+"endfunction
