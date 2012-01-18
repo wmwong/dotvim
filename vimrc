@@ -150,7 +150,10 @@ runtime macros/matchit.vim
 
 " CtrlP
 let g:ctrlp_map = '<leader>t'
-let g:ctrlp_working_path_mode = 2
+" Don't dynamically change the working path. Set it to where Vim started.
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+let g:ctrlp_user_command = ['.hg/', 'hg --cwd %s locate -I .']
 
 "
 " Functions
