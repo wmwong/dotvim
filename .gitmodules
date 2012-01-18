@@ -64,6 +64,9 @@
 [submodule "bundle/vim-liquid"]
 	path = bundle/vim-liquid
 	url = https://github.com/tpope/vim-liquid.git
+[submodule "bundle/gundo.vim"]
+	path = bundle/gundo.vim
+	url = http://github.com/sjl/gundo.vim.git
 [submodule "bundle/vim-slim"]
 	path = bundle/vim-slim
 	url = https://github.com/bbommarito/vim-slim.git

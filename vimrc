@@ -148,6 +148,9 @@ nmap <leader>sa :SessionSaveAs<CR>
 " This is required by textobj-rubyblock.
 runtime macros/matchit.vim
 
+" Gundo
+nnoremap <F5> :GundoToggle<CR>
+
 " CtrlP
 let g:ctrlp_map = '<leader>t'
 " Don't dynamically change the working path. Set it to where Vim started.
@@ -186,3 +189,7 @@ endfunction
     "CommandTFlush
   "endif
 "endfunction
+
+" Use Node.js for JavaScript Interpretation 
+" Please refer https://github.com/hallettj/jslint.vim/issues/13 
+let $JS_CMD='node'
