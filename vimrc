@@ -183,3 +183,7 @@ endfunction
     "CommandTFlush
   "endif
 "endfunction
+
+" Use Node.js for JavaScript Interpretation 
+" Please refer https://github.com/hallettj/jslint.vim/issues/13 
+let $JS_CMD='node'
