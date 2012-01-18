@@ -158,6 +158,12 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 let g:ctrlp_user_command = ['.hg/', 'hg --cwd %s locate -I .']
 
+" NOTE: After upgrading node.js to 0.6.2, the following is not needed. Leaving
+" in for now in case Mac needs it.
+" Use Node.js for JavaScript Interpretation 
+" Please refer https://github.com/hallettj/jslint.vim/issues/13 
+let $JS_CMD='node'
+
 "
 " Functions
 "
@@ -189,7 +195,3 @@ endfunction
     "CommandTFlush
   "endif
 "endfunction
-
-" Use Node.js for JavaScript Interpretation 
-" Please refer https://github.com/hallettj/jslint.vim/issues/13 
-let $JS_CMD='node'
