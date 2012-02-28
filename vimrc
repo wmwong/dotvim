@@ -30,11 +30,15 @@ set ignorecase      " case insensitive search
 set smartcase       " case insensitive when lower case, else case sensitive
 
 " Line numbers
-set number
+set rnu
 
 " Formatting
 " -r
 set formatprg=par\ -re
+
+" Invisible characters
+set list
+set listchars=tab:→\ ,trail:·
 
 " Ignore files
 set wildignore+=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.gif,*.xpm
@@ -62,15 +66,12 @@ if has("autocmd")
   " Restore cursor position
   autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
-  " Change statusline color in insert mode
-  autocmd InsertEnter * highlight StatusLine ctermfg=2 ctermbg=2
-  autocmd InsertLeave * highlight StatusLine ctermfg=4 ctermbg=7
-
-  " Change statusline color of active window
-  autocmd VimEnter * highlight StatusLine term=reverse ctermfg=4 ctermbg=7 gui=bold,reverse
-
   " Set warning of over column 80
-  autocmd BufWinEnter * let w:m1=matchadd('Error', '\%>80v.\+', -1)
+  if exists('+colorcolumn')
+    set colorcolumn=80
+  else
+    autocmd BufWinEnter * let w:m1=matchadd('Error', '\%>80v.\+', -1)
+  endif
 
   " If files have changed outside of Vim, update NERDTree and CommandT when
   " Vim gains focus.
@@ -132,6 +133,9 @@ map <C-k> <C-w>k
 map <C-j> <C-w>j
 map <C-l> <C-w>l
 
+" Force saving files that require root permission
+cmap w!! %!sudo tee > /dev/null %
+
 " Bubble single lines (uses unimpaired)
 nmap <C-Up> [e
 nmap <C-Down> ]e
@@ -169,24 +173,26 @@ let $JS_CMD='node'
 "
 
 " Update NERDTree.
-function s:UpdateNERDTree(...)
-  let stay = 0
+if !exists("*s:UpdateNERDTree")
+  function s:UpdateNERDTree(...)
+    let stay = 0
 
-  if(exists("a:1"))
-    let stay = a:1
-  end
+    if(exists("a:1"))
+      let stay = a:1
+    end
 
-  if exists("t:NERDTreeBufName")
-    let nr = bufwinnr(t:NERDTreeBufName)
-    if nr != -1
-      exe nr . "wincmd w"
-      exe substitute(mapcheck("R"), "<CR>", "", "")
-      if !stay
-        wincmd p
-      end
+    if exists("t:NERDTreeBufName")
+      let nr = bufwinnr(t:NERDTreeBufName)
+      if nr != -1
+        exe nr . "wincmd w"
+        exe substitute(mapcheck("R"), "<CR>", "", "")
+        if !stay
+          wincmd p
+        end
+      endif
     endif
-  endif
-endfunction
+  endfunction
+endif
 
 " NOTE: CommandT is no longer used. Leaving for historical purposes.
 " Update CommandT.
