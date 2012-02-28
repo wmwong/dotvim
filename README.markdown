@@ -47,6 +47,10 @@ Git submodules must be removed manually.
 
     git submodule foreach git pull origin master
 
+## Links
+
+* [Vimbits](http://vimbits.com)
+
 # Historical
 
 Command-t requires vim to be compiled with ruby. It also needs to be made using the system's default ruby.
