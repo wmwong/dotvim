@@ -62,13 +62,13 @@ set noswapfile
 
 if has("autocmd")
   " au is short for autocmd
-  
+
   " Restore cursor position
   autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
   " Set warning of over column 80
   if exists('+colorcolumn')
-    set colorcolumn=80
+    set colorcolumn=81
   else
     autocmd BufWinEnter * let w:m1=matchadd('Error', '\%>80v.\+', -1)
   endif
@@ -96,11 +96,14 @@ endif
 let mapleader = ","
 
 " DelimitMate
-let delimitMate_expand_space = 1
 let delimitMate_expand_cr = 1
 let delimitMate_balance_matchpairs = 1
 " DelimitMate override of SnipMate's S-Tab
 imap <S-Tab> <Plug>delimitMateS-Tab
+
+" Enable the matchit plugin for selecting blocks.
+" This is required by textobj-rubyblock.
+runtime macros/matchit.vim
 
 "
 " MAPPINGS
@@ -133,6 +136,14 @@ map <C-k> <C-w>k
 map <C-j> <C-w>j
 map <C-l> <C-w>l
 
+" Center search results
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+nnoremap <silent> g# g#zz
+
 " Force saving files that require root permission
 cmap w!! %!sudo tee > /dev/null %
 
@@ -148,10 +159,6 @@ nmap <leader>s :SessionList<CR>
 nmap <leader>ss :SessionSave<CR>
 nmap <leader>sa :SessionSaveAs<CR>
 
-" Enable the matchit plugin for selecting blocks.
-" This is required by textobj-rubyblock.
-runtime macros/matchit.vim
-
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
 
@@ -161,6 +168,17 @@ let g:ctrlp_map = '<leader>t'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 let g:ctrlp_user_command = ['.hg/', 'hg --cwd %s locate -I .']
+
+" TagBar
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_coffee = {
+      \'ctagstype': 'coffee',
+      \'kinds': [
+      \ 'c:class',
+      \ 'f:functions',
+      \ 'v:variables'
+      \]
+      \}
 
 " NOTE: After upgrading node.js to 0.6.2, the following is not needed. Leaving
 " in for now in case Mac needs it.
