@@ -33,8 +33,8 @@ set smartcase       " case insensitive when lower case, else case sensitive
 set rnu
 
 " Formatting
-" -r
-set formatprg=par\ -re
+set textwidth=78    " wrap using text width
+set wrapmargin=0    " don't wrap using distance from right margin
 
 " Invisible characters
 set list
@@ -87,6 +87,7 @@ if has("autocmd")
 
   " Filetypes
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+  autocmd FileType html,slim setlocal tw=0
   autocmd FileType helpfile setlocal nonumber      " no line numbers when viewing help
   autocmd FileType helpfile nnoremap <buffer><cr> <c-]>   " Enter selects subject
   autocmd FileType helpfile nnoremap <buffer><bs> <c-T>   " Backspace to go back
