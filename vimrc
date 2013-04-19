@@ -5,7 +5,7 @@ set nocompatible
 filetype off
 
 " Package bundling using pathogen
-call pathogen#runtime_append_all_bundles()
+call pathogen#incubate()
 call pathogen#helptags()
 
 " Specify a color scheme
@@ -30,7 +30,11 @@ set ignorecase      " case insensitive search
 set smartcase       " case insensitive when lower case, else case sensitive
 
 " Line numbers
-set rnu
+if version >= 703
+  set rnu
+else
+  set nu
+endif
 
 " Formatting
 set textwidth=78    " wrap using text width
